@@ -2,9 +2,21 @@ import {connect} from 'react-redux';
 import List from '../components/list';
 import {toggleTodo, deleteTodo} from '../actions';
 
+const calculateFilteredTodos = (todos, visibility) => {
+    if (visibility === 'ALL') {
+        return todos;
+    }
+    if (visibility === 'OPENED') {
+        return todos.filter((todo) => !todo.done);
+    }
+    if (visibility === 'CLOSED') {
+        return todos.filter((todo) => todo.done);
+    }
+};
+
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos
+        todos: calculateFilteredTodos(state.todos, state.filters.visibility)
     };
 };
 

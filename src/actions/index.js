@@ -28,3 +28,10 @@ export const deleteTodo = (index) => {
         id: index
     };
 };
+
+export const changeVisibility = (visibility) => {
+    return {
+        type: 'CHANGE_VISIBILITY',
+        visibility: visibility
+    };
+};
