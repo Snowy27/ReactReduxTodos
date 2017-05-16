@@ -1,22 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function Todo (props) {
-    return (
-        <li key={props.index}
-            className={props.todo.done ? 'completed' : ''}>
-            <div className="view">
-                <input
-                    className="toggle"
-                    checked={props.todo.done}
-                    type="checkbox"
-                    onClick={() => props.onDoneClick(props.index)}/>
-                <label>
-                    {props.index+1}. {props.todo.title}
-                </label>
-                <button
-                    className="destroy"
-                    onClick={() => props.onRemoveClick(props.index)}/>
-            </div>
-        </li>
-    );
+const Todo = ({index, todo, onDoneClick, onRemoveClick}) => (
+    <li key={todo.id}
+        className={todo.done ? 'completed' : ''}>
+        <div className="view">
+            <input
+                className="toggle"
+                checked={todo.done}
+                type="checkbox"
+                onClick={() => onDoneClick(todo.id)}/>
+            <label>
+                {index+1}. {todo.title}
+            </label>
+            <button
+                className="destroy"
+                onClick={() => onRemoveClick(todo.id)}/>
+        </div>
+    </li>
+);
+
+Todo.propTypes = {
+    index: PropTypes.number.isRequired,
+    todo: PropTypes.shape({
+        done: PropTypes.bool.isRequired,
+        title: PropTypes.string.isRequired
+    }).isRequired,
+    onDoneClick: PropTypes.func.isRequired,
+    onRemoveClick: PropTypes.func.isRequired
 }
+
+export default Todo;

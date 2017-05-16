@@ -14,5 +14,6 @@
   "trailing": true,
   "smarttabs": true,
   "white": false,
-  "sub": true
+  "sub": true,
+  "-W138": true
 }
